@@ -8,6 +8,8 @@ public class Driver {
 	private Console terminal;
 	public static void main(String[] args)
 	{
+		setPort(); //need to input the terminal
+		connect(); //attempts to connect to arduino
 		//RXTXRobot r = new ArduinoNano();
 		//reading input from user for program to run
 		Console terminal = System.console();
@@ -27,7 +29,7 @@ public class Driver {
 					moveMotor(0);//enter meters
 					break;
 				case 'b':
-					moveServoMotor(0);
+					moveServoMotor(0);  //enter angle
 					break;
 				case 'c':
 					System.out.println(readIRChar());
@@ -53,13 +55,14 @@ public class Driver {
 	private void moveServoMotor(double angle)
 	{
 		//TODO
+
 	}
 	
 	private char readIRChar()
 	{
-		//TODO
-		char output = '0';
-		
+		refreshDigitalPins();
+		char output = '0'; //connected to D4;
+		output = getIRChar();
 		return output;
 	}
 	
@@ -70,11 +73,14 @@ public class Driver {
 	
 	private double getTemperature()
 	{
-		//TODO
+		refreshDigitalPins()
 		double output = -1;
+		output = getAnalogPin(0);
 		return output;
 	}
-	
-	
-	
+
+	//make one for bump or ping
+
+
+	close();
 }

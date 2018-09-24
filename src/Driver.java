@@ -26,7 +26,7 @@ public class Driver {
 			switch(in)
 			{
 				case 'a':
-					EXERobot.moveMotor(0);//enter meters
+					EXERobot.moveMotor(0, 0, 0, 0, 0);//enter int channel1, int speed1, int channel2, int speed2, int time
 					break;
 				case 'b':
 <<<<<<< HEAD
@@ -52,16 +52,16 @@ public class Driver {
 	}
 	
 <<<<<<< HEAD
-	private void moveMotor(double meters)
+	private void moveMotor(int channel1, int speed1, int channel2, int speed2, int time)
 	{
 		//TODO
-		//I swear to god if this does not work i am killing the man to my right
+		runTwoPCAMotor(channel1, speed1, channel2, speed2, time)
+
 	}
 	
 	private void moveServoMotor(double angle)
 	{
-		//TODO
-
+		runPCAServo(int channel, angle); // need to know the channel
 	}
 	
 	private char readIRChar()
@@ -74,7 +74,7 @@ public class Driver {
 	
 	private void motorRunIndefinitely()
 	{
-		//TODO
+		runPCAMotor(4, 50, 0); //need to know channel, speed, and time 0 = infinite DOUBLE CHECK CHANNEL
 	}
 	
 	private double getTemperature()

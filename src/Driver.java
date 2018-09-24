@@ -8,13 +8,12 @@ public class Driver {
 	private Console terminal;
 	public static void main(String[] args)
 	{
-<<<<<<< HEAD
+
 		setPort(); //need to input the terminal
 		connect(); //attempts to connect to arduino
 		//RXTXRobot r = new ArduinoNano();
-=======
+
 		EXERobot robot = new EXERobot();
->>>>>>> a07dd64f02f15f37575d3dc56ac7c27784f1babf
 		//reading input from user for program to run
 		Console terminal = System.console();
 		
@@ -29,11 +28,7 @@ public class Driver {
 					EXERobot.moveMotor(0, 0, 0, 0, 0);//enter int channel1, int speed1, int channel2, int speed2, int time
 					break;
 				case 'b':
-<<<<<<< HEAD
-					moveServoMotor(0);  //enter angle
-=======
-					EXERobot.moveServoMotor(0);
->>>>>>> a07dd64f02f15f37575d3dc56ac7c27784f1babf
+					EXERobot.moveServoMotor(0);  //enter angle
 					break;
 				case 'c':
 					terminal.printf("" + EXERobot.readIRChar());
@@ -50,8 +45,7 @@ public class Driver {
 		}while(in != 'q');
 		
 	}
-	
-<<<<<<< HEAD
+
 	private void moveMotor(int channel1, int speed1, int channel2, int speed2, int time)
 	{
 		//TODO
@@ -89,11 +83,6 @@ public class Driver {
 
 
 	close();
-=======
-
 	
-	
-	
->>>>>>> a07dd64f02f15f37575d3dc56ac7c27784f1babf
 }
 

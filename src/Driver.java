@@ -2,50 +2,56 @@
 import java.io.Console;
 import java.util.Scanner;
 
-import rxtxrobot.*;
+
 public class Driver {
 	private RXTXRobot robot;
 	private Console terminal;
 	public static void main(String[] args)
 	{
+<<<<<<< HEAD
 		setPort(); //need to input the terminal
 		connect(); //attempts to connect to arduino
 		//RXTXRobot r = new ArduinoNano();
+=======
+		EXERobot robot = new EXERobot();
+>>>>>>> a07dd64f02f15f37575d3dc56ac7c27784f1babf
 		//reading input from user for program to run
 		Console terminal = System.console();
 		
 		terminal.printf("HELLO");
-		String input = terminal.readLine("Enter the program number ");
-		Scanner sc = new Scanner(System.in);
-		char in = sc.next()
-		System.out.println(input);
+		char in = terminal.readLine("Enter Program Number").charAt(0);
 
-		do
-		{
-			char in = sc.next()
+
+		while(in != 'q'){
 			switch(in)
 			{
 				case 'a':
-					moveMotor(0);//enter meters
+					EXERobot.moveMotor(0);//enter meters
 					break;
 				case 'b':
+<<<<<<< HEAD
 					moveServoMotor(0);  //enter angle
+=======
+					EXERobot.moveServoMotor(0);
+>>>>>>> a07dd64f02f15f37575d3dc56ac7c27784f1babf
 					break;
 				case 'c':
-					System.out.println(readIRChar());
+					terminal.printf("" + EXERobot.readIRChar());
 					break;
 				case 'd':
-					motorRunIndefinitely();
+					EXERobot.motorRunIndefinitely();
 					break;
 				case 'e':
-					System.out.println(getTemperature());
+					terminal.printf("" + EXERobot.getTemperature());
 					break;
 			}
+			in = terminal.readLine("Enter Program Number").charAt(0);
 
 		}while(in != 'q');
 		
 	}
 	
+<<<<<<< HEAD
 	private void moveMotor(double meters)
 	{
 		//TODO
@@ -83,4 +89,11 @@ public class Driver {
 
 
 	close();
+=======
+
+	
+	
+	
+>>>>>>> a07dd64f02f15f37575d3dc56ac7c27784f1babf
 }
+

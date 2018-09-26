@@ -46,14 +46,14 @@ public class Driver {
 		
 	}
 
-	private void moveMotor(int channel1, int speed1, int channel2, int speed2, int time)
+	/*private void moveMotor(int channel1, int speed1, int channel2, int speed2, int time)
 	{
 		//TODO
 		runTwoPCAMotor(channel1, speed1, channel2, speed2, time)
 
-	}
+	}*/
 	
-	private void moveServoMotor(double angle)
+	/*private void moveServoMotor(double angle)
 	{
 		runPCAServo(int channel, angle); // need to know the channel
 	}
@@ -77,7 +77,7 @@ public class Driver {
 		double output = -1;
 		output = getAnalogPin(0);
 		return output;
-	}
+	}*/
 
 	//make one for bump or ping
 

@@ -7,6 +7,8 @@ public class EXERobot {
     final private static int MOTOR_RIGHT = -1; //TODO
     final private static int SERVO_MEASUREMENTS = -1;//TODO
     final private static int SERVO_DROP_BALL = -1;//TODO
+    final private static int BUMP_SENSOR = -1;//TODO
+    final private static String USB_PORT = "FILL ME";
 
 
     public EXERobot() {
@@ -15,7 +17,7 @@ public class EXERobot {
 
     public EXERobot(String port) {
         RXTXRobot robot = new ArduinoNano();
-        robot.setPort(port);
+        robot.setPort(USB_PORT);
         robot.connect();
     }
 
@@ -37,7 +39,7 @@ public class EXERobot {
         //pulling the IRChar multiple times to account for dead times
         for (int count = 0; count < 300; count++) {
             System.out.println(robot.getPing(IR_SENSOR_PORT));
-            robot.sleep(300);
+            robot.sleep(100);
         }
 
 
@@ -56,7 +58,13 @@ public class EXERobot {
 
     public boolean checkBump()
     {
-        
+        robot.refreshDigitalPins();
+        int bumpValue =robot.getDigitalPin(BUMP_SENSOR);
+        if(bumpValue = 0 /*CHANGE THIS VALUE WITH TESTING*/)
+        {
+            return true;
+        }
+        return false;
     }
 
     //

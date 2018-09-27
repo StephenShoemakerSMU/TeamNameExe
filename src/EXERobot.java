@@ -9,26 +9,26 @@ public class EXERobot {
     final private static int SERVO_DROP_BALL = -1;//TODO
     final private static int BUMP_SENSOR = -1;//TODO
     final private static String USB_PORT = "FILL ME";
-
+    private RXTXRobot robot;
 
     public EXERobot() {
         RXTXRobot robot = new ArduinoNano();
     }
 
     public EXERobot(String port) {
-        RXTXRobot robot = new ArduinoNano();
+        robot = new ArduinoNano();
         robot.setPort(USB_PORT);
         robot.connect();
     }
 
 
-    private void moveMotor(int channel1, int speed1, int channel2, int speed2, int time) {
+    public void moveMotor(int channel1, int speed1, int channel2, int speed2, int time) {
         //TODO
         robot.runTwoPCAMotor(MOTOR_LEFT, speed1, MOTOR_RIGHT, speed2, time);
 
     }
 
-    public void moveServoMotor(double angle) {
+    public void moveServoMotor(int angle) {
         robot.runPCAServo(SERVO_MEASUREMENTS, angle); // need to know the channel //TODO
     }
 
@@ -49,18 +49,20 @@ public class EXERobot {
     }
 
     public void motorRunIndefinitely() {
-        boolean stopCondition; //create a function to check bump sensor
-        while (stopCondition) {
+        boolean stopCondition = false; //create a function to check bump sensor
+        int speed1 = 20;
+        int speed2 = 20;
+        while (!stopCondition) {
             robot.runTwoPCAMotor(MOTOR_LEFT, speed1, MOTOR_RIGHT, speed2, 1);
-            stopConditon = checkBump();
+            stopCondition = checkBump();
         }//TODO
     }
 
     public boolean checkBump()
     {
         robot.refreshDigitalPins();
-        int bumpValue =robot.getDigitalPin(BUMP_SENSOR);
-        if(bumpValue = 0 /*CHANGE THIS VALUE WITH TESTING*/)
+        int bumpValue =robot.getDigitalPin(BUMP_SENSOR).getValue();
+        if(bumpValue == 0 /*CHANGE THIS VALUE WITH TESTING*/)
         {
             return true;
         }

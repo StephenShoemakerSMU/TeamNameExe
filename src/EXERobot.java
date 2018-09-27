@@ -2,6 +2,7 @@ import rxtxrobot.*;
 public class EXERobot {
 
     //all the port constants should go here
+    final private static int TEMP_SENSOR_PORT = 0;
     final private static int IR_SENSOR_PORT = 12;
     final private static int MOTOR_LEFT = -1; //TODO
     final private static int MOTOR_RIGHT = -1; //TODO
@@ -9,6 +10,7 @@ public class EXERobot {
     final private static int SERVO_DROP_BALL = -1;//TODO
     final private static int BUMP_SENSOR = -1;//TODO
     final private static String USB_PORT = "FILL ME";
+
 
 
     public EXERobot() {
@@ -59,7 +61,7 @@ public class EXERobot {
     public boolean checkBump()
     {
         robot.refreshDigitalPins();
-        int bumpValue =robot.getDigitalPin(BUMP_SENSOR);
+        int bumpValue =robot.getDigitalPin(BUMP_SENSOR).getValue; // do we need getValue here?
         if(bumpValue = 0 /*CHANGE THIS VALUE WITH TESTING*/)
         {
             return true;
@@ -69,10 +71,21 @@ public class EXERobot {
 
     //
 
-    public static double getTemperature()
-    {
-        //TODO
-        double output = -1;
-        return output;
+    public static double getTemperature() {
+        int sum = 0;
+        double slope =  -1;
+        double yInter = -1;
+
+        double readingCount = 10.0;
+        for (int i = 0; i < readingCount; i++)
+        {
+            robot.refreshAnalogPin();
+            int reading = robot.getAnalogPin(TEMP_SENSOR_PORT).getValue();
+            sum += reading;
+        }
+        output = sum / readingCount;
+        double temp = 0.0;
+        temp = (output - yInter) / slope;
+        return temp;
     }
 }

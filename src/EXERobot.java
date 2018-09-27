@@ -63,13 +63,13 @@ public class EXERobot {
     public boolean checkBump()
     {
         robot.refreshDigitalPins();
-<<<<<<< HEAD
+
         int bumpValue =robot.getDigitalPin(BUMP_SENSOR).getValue();
         if(bumpValue == 0 /*CHANGE THIS VALUE WITH TESTING*/)
-=======
+
         int bumpValue =robot.getDigitalPin(BUMP_SENSOR).getValue; // do we need getValue here?
         if(bumpValue = 0 /*CHANGE THIS VALUE WITH TESTING*/)
->>>>>>> 0c65af0556d6c1b6c11f509b6c5828311663e4f5
+
         {
             return true;
         }

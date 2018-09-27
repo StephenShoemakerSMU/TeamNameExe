@@ -1,16 +1,16 @@
-
+/*
 import java.io.Console;
+import EXERobot.*;
 import java.util.Scanner;
 
-
 public class Driver {
-	private RXTXRobot robot;
+	//private RXTXRobot robot;
 	private Console terminal;
 	public static void main(String[] args)
 	{
 
-		setPort(); //need to input the terminal
-		connect(); //attempts to connect to arduino
+		//setPort(); //need to input the terminal
+		//connect(); //attempts to connect to arduino
 		//RXTXRobot r = new ArduinoNano();
 
 		EXERobot robot = new EXERobot();
@@ -25,19 +25,19 @@ public class Driver {
 			switch(in)
 			{
 				case 'a':
-					EXERobot.moveMotor(0, 0, 0, 0, 0);//enter int channel1, int speed1, int channel2, int speed2, int time
+					robot.moveMotor(0, 0, 0, 0, 0);//enter int channel1, int speed1, int channel2, int speed2, int time
 					break;
 				case 'b':
-					EXERobot.moveServoMotor(0);  //enter angle
+					robot.moveServoMotor(0);  //enter angle
 					break;
 				case 'c':
-					terminal.printf("" + EXERobot.readIRChar());
+					terminal.printf("" + robot.readIRChar());
 					break;
 				case 'd':
-					EXERobot.motorRunIndefinitely();
+					robot.motorRunIndefinitely();
 					break;
 				case 'e':
-					terminal.printf("" + EXERobot.getTemperature());
+					terminal.printf("" + robot.getTemperature());
 					break;
 			}
 			in = terminal.readLine("Enter Program Number").charAt(0);
@@ -77,12 +77,24 @@ public class Driver {
 		double output = -1;
 		output = getAnalogPin(0);
 		return output;
-	}*/
+	}
 
 	//make one for bump or ping
 
 
-	close();
+	//close();
 	
 }
 
+*/
+import rxtxrobot.*;
+public class RobotDriver {
+	public static void main(String[] args) {
+		RXTXRobot robot = new ArduinoUno();
+		robot.setPort("COM 3");
+		robot.connect();
+
+		robot.runTwoPCAMotor(2, 100, 3, -200, 5000); //RUN THE CODE
+		robot.close();
+	}
+}g

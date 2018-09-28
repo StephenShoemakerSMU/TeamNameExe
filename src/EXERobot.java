@@ -1,11 +1,12 @@
+package TeamNameExe.src;
 import rxtxrobot.*;
 public class EXERobot {
 
     //all the port constants should go here
     final private static int TEMP_SENSOR_PORT = 0;
     final private static int IR_SENSOR_PORT = 12;
-    final private static int MOTOR_LEFT = -1; //TODO
-    final private static int MOTOR_RIGHT = -1; //TODO
+    final private static int MOTOR_LEFT = 12; //TODO
+    final private static int MOTOR_RIGHT = 10; //TODO
     final private static int SERVO_MEASUREMENTS = -1;//TODO
     final private static int SERVO_DROP_BALL = -1;//TODO
     final private static int BUMP_SENSOR = -1;//TODO
@@ -14,17 +15,20 @@ public class EXERobot {
 
 
     public EXERobot() {
-        RXTXRobot robot = new ArduinoNano();
+        RXTXRobot robot = new ArduinoUno();
     }
 
     public EXERobot(String port) {
-        robot = new ArduinoNano();
+        robot = new ArduinoUno();
         robot.setPort(USB_PORT);
         robot.connect();
     }
 
-
-    public void moveMotor(int channel1, int speed1, int channel2, int speed2, int time) {
+    public void close()
+    {
+        robot.close();
+    }
+    public void moveMotor( int speed1, int speed2, int time) {
         //TODO
         robot.runTwoPCAMotor(MOTOR_LEFT, speed1, MOTOR_RIGHT, speed2, time);
 
@@ -65,10 +69,8 @@ public class EXERobot {
         robot.refreshDigitalPins();
 
         int bumpValue =robot.getDigitalPin(BUMP_SENSOR).getValue();
-        if(bumpValue == 0 /*CHANGE THIS VALUE WITH TESTING*/)
 
-        int bumpValue =robot.getDigitalPin(BUMP_SENSOR).getValue; // do we need getValue here?
-        if(bumpValue = 0 /*CHANGE THIS VALUE WITH TESTING*/)
+        if(bumpValue == 0 /*CHANGE THIS VALUE WITH TESTING*/)
 
         {
             return true;
@@ -78,15 +80,15 @@ public class EXERobot {
 
     //
 
-    public static double getTemperature() {
+    public double getTemperature() {
         int sum = 0;
         double slope =  -1;
         double yInter = -1;
-
+        double output = 0;
         double readingCount = 10.0;
         for (int i = 0; i < readingCount; i++)
         {
-            robot.refreshAnalogPin();
+            robot.refreshAnalogPins();
             int reading = robot.getAnalogPin(TEMP_SENSOR_PORT).getValue();
             sum += reading;
         }

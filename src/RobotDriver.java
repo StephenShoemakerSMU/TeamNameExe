@@ -87,14 +87,50 @@ public class Driver {
 }
 
 */
-import rxtxrobot.*;
-public class RobotDriver {
-	public static void main(String[] args) {
-		RXTXRobot robot = new ArduinoUno();
-		robot.setPort("COM 3");
-		robot.connect();
+package TeamNameExe.src;
 
-		robot.runTwoPCAMotor(2, 100, 3, -200, 5000); //RUN THE CODE
-		robot.close();
+import rxtxrobot.*;
+import java.io.Console;
+import java.util.Scanner;
+
+
+public class RobotDriver {
+	private RXTXRobot robot;
+	private Console terminal;
+
+	public static void main(String[] args) {
+
+
+		EXERobot robot = new EXERobot("COM3");
+		//reading input from user for program to run
+		Console terminal = System.console();
+
+		System.out.println("Hello");
+		Scanner input = new Scanner(System.in);
+
+		char in = input.nextLine().charAt(0);
+
+		while (in != 'q') {
+			switch (in) {
+				case 'a':
+					robot.moveMotor(0, 0, 0);//enter int channel1, int speed1, int channel2, int speed2, int time
+					break;
+				case 'b':
+					robot.moveServoMotor(0);  //enter angle
+					break;
+				case 'c':
+					terminal.printf("" + robot.readIRChar());
+					break;
+				case 'd':
+					robot.motorRunIndefinitely();
+					break;
+				case 'e':
+					terminal.printf("" + robot.getTemperature());
+					break;
+			}
+			in = input.nextLine().charAt(0);
+
+		}
+	robot.close();
 	}
-}g
+}

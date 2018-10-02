@@ -125,11 +125,11 @@ public class RobotDriver {
 					robot.motorRunIndefinitely();
 					break;
 				case 'e':
-					terminal.printf("" + robot.getTemperature());
+					System.out.println("" + robot.getTemperature());
 					break;
 				case 'f':
 						robot.checkBump();
-						break ;
+						break;
 			}
 			in = input.nextLine().charAt(0);
 

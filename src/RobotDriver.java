@@ -113,7 +113,7 @@ public class RobotDriver {
 		while (in != 'q') {
 			switch (in) {
 				case 'a':
-					robot.moveMotor(0, 0, 0);//enter int channel1, int speed1, int channel2, int speed2, int time
+					robot.moveMotor(300, -350, 2000);//enter int channel1, int speed1, int channel2, int speed2, int time
 					break;
 				case 'b':
 					robot.moveServoMotor(0);  //enter angle
@@ -125,8 +125,11 @@ public class RobotDriver {
 					robot.motorRunIndefinitely();
 					break;
 				case 'e':
-					terminal.printf("" + robot.getTemperature());
+					System.out.println("" + robot.getTemperature());
 					break;
+				case 'f':
+						robot.checkBump();
+						break;
 			}
 			in = input.nextLine().charAt(0);
 

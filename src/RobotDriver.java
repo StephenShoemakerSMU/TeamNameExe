@@ -108,6 +108,7 @@ public class RobotDriver {
 		System.out.println("Hello");
 		Scanner input = new Scanner(System.in);
 
+		printMenu();
 		char in = input.nextLine().charAt(0);
 
 		while (in != 'q') {
@@ -116,7 +117,9 @@ public class RobotDriver {
 					robot.moveMotor(300, -350, 2000);//enter int channel1, int speed1, int channel2, int speed2, int time
 					break;
 				case 'b':
-					robot.moveServoMotor(0);  //enter angle
+					System.out.println("Enter Angle: ");
+					int angle = Integer.parseInt(input.nextLine());
+					robot.moveServoMotor(angle);  //enter angle
 					break;
 				case 'c':
 					terminal.printf("" + robot.readIRChar());
@@ -132,8 +135,20 @@ public class RobotDriver {
 						break;
 			}
 			in = input.nextLine().charAt(0);
-
+		printMenu();
 		}
 	robot.close();
+	}
+
+	static public void printMenu()
+	{
+		String menu = "Options For Robot: \n" +
+				"a: move three meters \n" +
+				"b: move servo motor \n" +
+				"c: read IR char \n" +
+				"d: run motor until bump sensor \n" +
+				"e: get temperature \n";
+		System.out.print(menu);
+
 	}
 }

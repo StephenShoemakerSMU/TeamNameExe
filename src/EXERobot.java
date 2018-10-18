@@ -13,6 +13,7 @@ public class EXERobot {
     final private static String USB_PORT = "COM3";
     final private static int BUMP_SENSOR_TRIGGERED = 0;
     final private static int BUMP_SENSOR_RELAXED = 1;
+    
     private RXTXRobot robot;
 
 
@@ -37,7 +38,7 @@ public class EXERobot {
     }
 
     public void moveServoMotor(int angle) {
-        robot.runPCAServo(SERVO_MEASUREMENTS, angle); // need to know the channel //TODO
+        robot.runPCAServo(SERVO_MEASUREMENTS, (int)((7.2/9.0)*angle)); // need to know the channel //TODO
     }
 
     public char readIRChar() {
@@ -86,8 +87,8 @@ public class EXERobot {
 
     public double getTemperature() {
         int sum = 0;
-        double slope =  -1.977992391;
-        double yInter = 903.7592918;
+        double slope =  -1.071428571;
+        double yInter = 847.7452381;
         double averageReading = 0;
         double readingCount = 10.0;
         for (int i = 0; i < readingCount; i++)
@@ -97,8 +98,8 @@ public class EXERobot {
             sum += reading;
         }
         averageReading = sum / readingCount;
-        //double temp = (averageReading - yInter) / slope;
-        //return temp;
-        return averageReading;
+        double temp = (averageReading - yInter) / slope;
+        return temp;
+        //return averageReading;
     }
 }

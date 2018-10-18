@@ -13,7 +13,11 @@ public class EXERobot {
     final private static String USB_PORT = "COM3";
     final private static int BUMP_SENSOR_TRIGGERED = 0;
     final private static int BUMP_SENSOR_RELAXED = 1;
+<<<<<<< HEAD
     
+=======
+    final private static int INCLINOMETER_SENSOR_PORT = 1;
+>>>>>>> 1abea4f22bcb85db3b01daa869a63fb4fb075b32
     private RXTXRobot robot;
 
 
@@ -102,4 +106,38 @@ public class EXERobot {
         return temp;
         //return averageReading;
     }
+
+    public int getSlope()
+    {
+        robot.refreshAnalogPins();
+        return robot.getAnalogPin(INCLINOMETER_SENSOR_PORT).getValue(); //Todo needs to be calibrated
+    }
+
+    public int getConductivity()
+    {
+        return robot.getConductivity(); //todo
+    }
+
+
+    public double angleRecieved()
+    {
+        char c;
+        int angle = 0;
+        for(int i = 0; i < 36; i ++)
+        {
+            robot.runPCATimedServo(SERVO_MEASUREMENTS, angle, 500);
+
+            c = robot.getIRChar();
+            if(c != '0')
+                break;
+            angle += 5;
+        }
+
+        return angle;
+    }
+    public double pylonAngle() //todo how would we know which one is the second one
+    {
+
+    }
+
 }

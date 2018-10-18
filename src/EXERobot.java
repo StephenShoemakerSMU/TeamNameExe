@@ -127,22 +127,23 @@ public class EXERobot {
     public int[] angleRecieved()
     {
         int[] rtn = new int{-1, -1, -1}; // work on
-
+        int count = 0;
         char c;
         int angle = 0;
         for(int i = 0; i < 36; i ++)
         {
-            robot.runPCATimedServo(SERVO_MEASUREMENTS, angle, 500);
+            robot.runPCATimedServo(SERVO_MEASUREMENTS, (int)((7.2/9.0)*angle), 500);
 
             c = robot.getIRChar();
             if(c != '0')
             {
-
+                rtn[count] = angle;
+                count++;
             }
             angle += 5;
         }
 
-        return angle;
+        return rtn;
     }
     public double pylonAngle() //todo how would we know which one is the second one
     {

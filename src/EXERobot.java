@@ -85,11 +85,11 @@ public class EXERobot {
 
     //
 
-    public int getTemperature() {
+    public double getTemperature() {
         int sum = 0;
-        double slope =  -1;
-        double yInter = -1;
-        double output = 0;
+        double slope =  -1.977992391;
+        double yInter = 903.7592918;
+        double averageReading = 0;
         double readingCount = 10.0;
         for (int i = 0; i < readingCount; i++)
         {
@@ -97,12 +97,10 @@ public class EXERobot {
             int reading = robot.getAnalogPin(TEMP_SENSOR_PORT).getValue();
             sum += reading;
         }
-        output = sum / readingCount;
-        double temp = 0.0;
-        temp = (output - yInter) / slope;
-        robot.refreshAnalogPins();
-        return robot.getAnalogPin(TEMP_SENSOR_PORT).getValue();
-
+        averageReading = sum / readingCount;
+        //double temp = (averageReading - yInter) / slope;
+        //return temp;
+        return averageReading;
     }
 
     public int getSlope()

@@ -13,11 +13,16 @@ public class EXERobot {
     final private static String USB_PORT = "COM3";
     final private static int BUMP_SENSOR_TRIGGERED = 0;
     final private static int BUMP_SENSOR_RELAXED = 1;
-<<<<<<< HEAD
-    
-=======
+
     final private static int INCLINOMETER_SENSOR_PORT = 1;
->>>>>>> 1abea4f22bcb85db3b01daa869a63fb4fb075b32
+
+    final private static char PYLON_NORTHEAST = 'K';
+    final private static char PYLON_NORTH = 'G';
+    //final private static char PYLON_NORTHWEST; //TODO
+    final private static char PYLON_SOUTHEAST = 'V';
+    final private static char PYLON_SOUTH = 'N';
+    //final private static char PYLON_SOUTHWEST; //TODO
+
     private RXTXRobot robot;
 
 

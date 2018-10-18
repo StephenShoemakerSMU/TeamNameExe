@@ -115,7 +115,7 @@ public class RobotDriver {
 			switch (in) {
 				case 'a':
 					//				LEFT		RIGHT
-					robot.moveMotor(212, -350, 8400);//enter int channel1, int speed1, int channel2, int speed2, int time
+					robot.moveMotor(214, -350, 7940);//enter int channel1, int speed1, int channel2, int speed2, int time
 					break;
 				case 'b':
 					System.out.println("Enter Angle: ");

@@ -115,8 +115,10 @@ public class EXERobot {
     }
 
 
-    public double angleRecieved()
+    public int[] angleRecieved()
     {
+        int[] rtn = new int{-1, -1, -1}; // work on
+
         char c;
         int angle = 0;
         for(int i = 0; i < 36; i ++)
@@ -125,7 +127,9 @@ public class EXERobot {
 
             c = robot.getIRChar();
             if(c != '0')
-                break;
+            {
+
+            }
             angle += 5;
         }
 
@@ -133,7 +137,15 @@ public class EXERobot {
     }
     public double pylonAngle() //todo how would we know which one is the second one
     {
-
+        return 180 - angleRecieved() - angleRecieved();
     }
+
+    public void turn()
+    {
+        int time  = -1; //todo calibrate this so it does a 10 degree turn
+        robot.runTwoPCAMotor(MOTOR_LEFT, -212, MOTOR_RIGHT, -  350, time);
+    }
+
+
 
 }

@@ -96,10 +96,10 @@ public class EXERobot {
 
     public double getTemperature() {
         int sum = 0;
-        double slope =  -1.071428571;
-        double yInter = 847.7452381;
-        double averageReading = 0;
-        double readingCount = 10.0;
+//        double slope =  -1.071428571;
+//        double yInter = 847.7452381;
+       double averageReading = 0;
+           double readingCount = 10.0;
         for (int i = 0; i < readingCount; i++)
         {
             robot.refreshAnalogPins();
@@ -107,8 +107,8 @@ public class EXERobot {
             sum += reading;
         }
         averageReading = sum / readingCount;
-        double temp = (averageReading - yInter) / slope;
-        return temp;
+//        double temp = (averageReading - yInter) / slope;
+        return averageReading;
         //return averageReading;
     }
 
@@ -124,38 +124,98 @@ public class EXERobot {
     }
 
 
-    public int[] angleRecieved()
+//    public int[] angleRecieved()
+//    {
+//        int[] rtn = new int{-1, -1, -1}; // work on
+//        int count = 0;
+//        char c;
+//        int angle = 0;
+//        for(int i = 0; i < 36; i ++)
+//        {
+//            robot.runPCATimedServo(SERVO_MEASUREMENTS, (int)((7.2/9.0)*angle), 500);
+//
+//            c = robot.getIRChar();
+//            if(c != '0')
+//            {
+//                rtn[count] = angle;
+//                count++;
+//            }
+//            angle += 5;
+//        }
+//
+//        return rtn;
+//    }
+//    public double pylonAngle() //todo how would we know which one is the second one
+//    {
+//        return 180 - angleRecieved() - angleRecieved();
+//    }
+
+    public void turnTen()
     {
-        int[] rtn = new int{-1, -1, -1}; // work on
-        int count = 0;
-        char c;
-        int angle = 0;
-        for(int i = 0; i < 36; i ++)
+        int time  = 100; //todo calibrate this so it does a 10 degree turn
+        robot.runTwoPCAMotor(MOTOR_LEFT, -200, MOTOR_RIGHT, -  200, time);
+    }
+
+    public void turnNinety()
+    {
+        int time = 800;
+        robot.runTwoPCAMotor(MOTOR_LEFT, -200, MOTOR_RIGHT, -200, time);
+    }
+
+    public void turnTenMulti(int x)
+    {
+        for(int i = 0; i < x; i++)
         {
-            robot.runPCATimedServo(SERVO_MEASUREMENTS, (int)((7.2/9.0)*angle), 500);
-
-            c = robot.getIRChar();
-            if(c != '0')
-            {
-                rtn[count] = angle;
-                count++;
-            }
-            angle += 5;
+            turnTen();
         }
-
-        return rtn;
     }
-    public double pylonAngle() //todo how would we know which one is the second one
+
+
+
+
+    public void stop()
     {
-        return 180 - angleRecieved() - angleRecieved();
+        int time = 1000;
+        robot.runTwoPCAMotor(MOTOR_LEFT, 0, MOTOR_RIGHT, 0, time);
     }
 
-    public void turn()
+    public int conduction()
     {
-        int time  = -1; //todo calibrate this so it does a 10 degree turn
-        robot.runTwoPCAMotor(MOTOR_LEFT, -212, MOTOR_RIGHT, -  350, time);
+        return robot.getConductivity();
     }
 
+//    public location takeTwoAngles()
+//    {
+//
+//    }
+//    public void ballDrop()
+//    {
+//        r
+//    }
+
+//    public void quadrantOne()
+//    {
+//        moveMotor(-200, -250, 7890);
+//        getTemperature();
+//    }
+//
+//    public void quadrantTwo()
+//    {
+//        conduction();
+//    }
+//
+//    public void quadrantThree()
+//    {
+//        //move
+//        //get inclinometer
+//    }
+//
+//    public void quadrantFour()
+//    {
+//        //avoid barriers
+//        //get inclinometer
+//        //move
+//    }
 
 
 }

@@ -115,12 +115,12 @@ public class RobotDriver {
 			switch (in) {
 				case 'a':
 					//				LEFT		RIGHT
-					robot.moveMotor(214, -350, 7940);//enter int channel1, int speed1, int channel2, int speed2, int time
+					robot.moveMotor(240, -250, 7940);//enter int channel1, int speed1, int channel2, int speed2, int time
 					break;
 				case 'b':
 					System.out.println("Enter Angle: ");
 					int angle = Integer.parseInt(input.nextLine());
-					robot.moveServoMotor(angle);  //enter angle
+					robot.moveServoMotor(angle);  //20 degrees is neutral
 					break;
 				case 'c':
 					terminal.printf("" + robot.readIRChar());
@@ -134,6 +134,20 @@ public class RobotDriver {
 				case 'f':
 						robot.checkBump();
 						break;
+				case 'g':
+					for(int i = 0; i < 9; i++)
+						robot.turnTen();
+					break;
+				case 'h':
+					for(int i = 0; i < 9; i++)
+						robot.turnTen();
+					robot.stop();
+					for(int i = 0; i < 9; i++)
+						robot.turnTen();
+					break;
+				case 'i':
+					robot.turnNinety();
+					break;
 			}
 			in = input.nextLine().charAt(0);
 		printMenu();

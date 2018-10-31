@@ -7,9 +7,11 @@ public class EXERobot {
     final private static int IR_SENSOR_PORT = 4;
     final private static int MOTOR_LEFT = 11; //TODO
     final private static int MOTOR_RIGHT = 15; //TODO
-    final private static int SERVO_MEASUREMENTS = 0;//TODO
+    final private static int SERVO_MEASUREMENTS_1 = 0;//TODO
+    final private static int SERVO_MEASUREMENTS_2 = 2;
+    final private static int SERVO_MEASUREMENTS_3 = 3;
     final private static int SERVO_DROP_BALL = -1;//TODO
-    final private static int BUMP_SENSOR = 5;//TODO
+    final private static int BUMP_SENSOR = 5;//TOD0
     final private static String USB_PORT = "COM3";
     final private static int BUMP_SENSOR_TRIGGERED = 0;
     final private static int BUMP_SENSOR_RELAXED = 1;
@@ -47,7 +49,7 @@ public class EXERobot {
     }
 
     public void moveServoMotor(int angle) {
-        robot.runPCAServo(SERVO_MEASUREMENTS, (int)((7.2/9.0)*angle)); // need to know the channel //TODO
+        robot.runPCAServo(SERVO_MEASUREMENTS_1, (int)((7.2/9.0)*angle)); // need to know the channel //TODO
     }
 
     public char readIRChar() {
@@ -118,33 +120,39 @@ public class EXERobot {
         return robot.getAnalogPin(INCLINOMETER_SENSOR_PORT).getValue(); //Todo needs to be calibrated
     }
 
-    public int getConductivity()
+    public double getConductivity()
     {
-        return robot.getConductivity(); //todo
+        int ADC = robot.getConductivity();
+//        double slope = -1;
+//        double yInter = -1;
+//        return yInter + slope * ADC;
+        return ADC;
     }
 
 
-//    public int[] angleRecieved()
-//    {
-//        int[] rtn = new int{-1, -1, -1}; // work on
-//        int count = 0;
-//        char c;
-//        int angle = 0;
-//        for(int i = 0; i < 36; i ++)
-//        {
-//            robot.runPCATimedServo(SERVO_MEASUREMENTS, (int)((7.2/9.0)*angle), 500);
-//
-//            c = robot.getIRChar();
-//            if(c != '0')
-//            {
-//                rtn[count] = angle;
-//                count++;
-//            }
-//            angle += 5;
-//        }
-//
-//        return rtn;
-//    }
+    public int[] angleRecieved()
+    {
+        int[] rtn = {-1, -1, -1}; // need to return the chars that go with that
+        int count = 0;
+        char c;
+        int angle = 0;
+        for(int i = 0; i < 36; i ++)
+        {
+            robot.runPCATimedServo(SERVO_MEASUREMENTS_1, (int)((7.2/9.0)*angle), 500);
+
+            c = robot.getIRChar();
+            if(c != '0')
+
+            {
+                System.out.println("Character: " + c + " Angle: " + angle);
+                //rtn[count] = angle;
+                //count++;
+            }
+            angle += 5;
+        }
+
+        return rtn;
+    }
 //    public double pylonAngle() //todo how would we know which one is the second one
 //    {
 //        return 180 - angleRecieved() - angleRecieved();
@@ -188,10 +196,10 @@ public class EXERobot {
 //    {
 //
 //    }
-//    public void ballDrop()
-//    {
-//        r
-//    }
+    public void ballDrop()
+    {
+        robot.runPCAServo(SERVO_MEASUREMENTS_3, (int)((7.2/9.0)* 160));
+    }
 
 //    public void quadrantOne()
 //    {

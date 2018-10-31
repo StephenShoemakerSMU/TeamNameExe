@@ -146,7 +146,7 @@ public class RobotDriver {
 						robot.turnTen();
 					break;
 				case 'i':
-					robot.turnNinety();
+					robot.getConductivity();
 					break;
 			}
 			in = input.nextLine().charAt(0);

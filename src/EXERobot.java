@@ -8,7 +8,7 @@ public class EXERobot {
     final private static int MOTOR_LEFT = 11; //TODO
     final private static int MOTOR_RIGHT = 15; //TODO
     final private static int SERVO_MEASUREMENTS_1 = 0;//TODO
-    final private static int SERVO_MEASUREMENTS_2 = 2;
+    final private static int SERVO_MEASUREMENTS_2 = 4;
     final private static int SERVO_MEASUREMENTS_3 = 3;
     final private static int SERVO_DROP_BALL = -1;//TODO
     final private static int BUMP_SENSOR = 5;//TOD0
@@ -48,7 +48,7 @@ public class EXERobot {
 
     }
 
-    public void moveServoMotor(int angle) {
+    public void setMeasurementServo(int angle) {
         robot.runPCAServo(SERVO_MEASUREMENTS_1, (int)((7.2/9.0)*angle)); // need to know the channel //TODO
     }
 
@@ -130,7 +130,7 @@ public class EXERobot {
     }
 
 
-    public int[] angleRecieved()
+    public void angleRecieved()
     {
         int[] rtn = {-1, -1, -1}; // need to return the chars that go with that
         int count = 0;
@@ -138,9 +138,9 @@ public class EXERobot {
         int angle = 0;
         for(int i = 0; i < 36; i ++)
         {
-            robot.runPCATimedServo(SERVO_MEASUREMENTS_1, (int)((7.2/9.0)*angle), 500);
+            robot.runPCATimedServo(SERVO_MEASUREMENTS_2, (int)((7.2/9.0)*angle), 500);
 
-            c = robot.getIRChar();
+            c = readIRChar();
             if(c != '0')
 
             {
@@ -151,7 +151,11 @@ public class EXERobot {
             angle += 5;
         }
 
-        return rtn;
+    }
+
+    void moveIrSensorServo(int angle)
+    {
+        robot.runPCATimedServo(SERVO_MEASUREMENTS_2, (int)((16.0/21.0) * angle), 1000);
     }
 //    public double pylonAngle() //todo how would we know which one is the second one
 //    {
@@ -203,6 +207,23 @@ public class EXERobot {
 
 //    public void quadrantOne()
 //    {
+//        yeetTheBridge();
+
+//        moveTilPerpindicularTowardsBin();
+    //    getAngleBetweenTwoPylons();
+    //    turnTowardsBin()
+    //    moveTowardsBin()
+    //    dropConductivityProbe()
+    //    getMeasurement();
+    //    liftConductvityProbe();
+    //    turn90TowardsMountain()
+    //    turnAtMountain();
+    //    yeetHalfwayAtMountain();
+    //    getInclinometerMeasurement();
+    //    yeetSecondHalfOfVolcano();
+    //    yeetTheGasSensor();
+    //    yeetBackDownTheMountain();
+    //
 //        moveMotor(-200, -250, 7890);
 //        getTemperature();
 //    }
